@@ -253,4 +253,29 @@ if(!message.member.hasPermission("MANAGE_CHANNELS")){ return message.channel.sen
   
   });
 
-bot.login("YOUR TOKEN HERE")
+
+bot.on('raw', event => {
+  if (event.t === 'MESSAGE_REACTION_ADD' || event.t == "MESSAGE_REACTION_REMOVE"){
+      
+      let initialMessage = `**Cliquez sur les réactions pour obtenir ou supprimer un rôle.**`;
+      let channel = bot.channels.get(event.d.channel_id);
+      let message = channel.fetchMessage(event.d.message_id).then(msg=> {
+      let user = msg.guild.members.get(event.d.user_id);
+      
+      if (msg.author.id == bot.user.id && msg.content != initialMessage){
+     
+          var re = `\\*\\*"(.+)?(?="\\*\\*)`;
+          var role = msg.content.match(re)[1];
+      
+          if (user.id != bot.user.id){
+              var roleObj = msg.guild.roles.find(r => r.name === role);
+              var memberObj = msg.guild.members.get(user.id);
+              
+              if (event.t === "MESSAGE_REACTION_ADD"){
+                  memberObj.addRole(roleObj)
+              } else {
+                  memberObj.removeRole(roleObj);
+}}}})}   
+});
+
+bot.login("NTQ3Mzk2MzA0NTc4MjgxNTAy.D09BrA.esV2f1D9tudtEPukhJ3niAFhuQw")
