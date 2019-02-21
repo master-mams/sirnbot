@@ -8,7 +8,7 @@ const config = require("./config.json")
 
 const Youtube = require("simple-youtube-api");
 const ytdl = require("ytdl-core");
-const youtube = new Youtube("AIzaSyAN-kK9twI3PvjnPrxvpHoZvgqIsn2Aq9A")
+const youtube = new Youtube("GOOGLE API KEY")
 const queue = new Map();
 
 const prefix = config.prefix
@@ -278,4 +278,4 @@ bot.on('raw', event => {
 }}}})}   
 });
 
-bot.login("NTQ3Mzk2MzA0NTc4MjgxNTAy.D09BrA.esV2f1D9tudtEPukhJ3niAFhuQw")
+bot.login("TOKEN HERE")
